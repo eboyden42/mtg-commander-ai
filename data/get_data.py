@@ -7,13 +7,23 @@ def main():
     commanders = fetch_legal_commanders()
     for i in range(len(commanders)):
          commanders[i] = commanders[i]["name"]
-    print(commanders)
 
-    sample = commanders[0]
-    decks = edhrec.get_commander_decks(sample)
-    print(decks.keys(), len(decks))
+    for commander in commanders:
+        print(createCommanderDictionary(commander=commander))
 
-    # decklists = get_all_decks(commanders=commanders)
+
+def createCommanderDictionary(commander):
+    try:
+        decks = edhrec.get_commander_decks(commander)
+        item = {
+            "commander": str(commander),
+            "decklist": decks["deck"],
+            "description": "None"
+        }
+        return item
+    except:
+        pass
+
 
 def fetch_legal_commanders():
     url = "https://api.scryfall.com/cards/search"
