@@ -1,5 +1,6 @@
 import requests
 from pyedhrec import EDHRec
+import ai
 
 edhrec = EDHRec()
 
@@ -8,8 +9,9 @@ def main():
     for i in range(len(commanders)):
          commanders[i] = commanders[i]["name"]
 
-    for commander in commanders:
-        print(createCommanderDictionary(commander=commander))
+    item = createCommanderDictionary(commanders[0])
+
+    print(item)
 
 
 def createCommanderDictionary(commander):
@@ -18,7 +20,7 @@ def createCommanderDictionary(commander):
         item = {
             "commander": str(commander),
             "decklist": decks["deck"],
-            "description": "None"
+            "description": ai.getDescription(decks["deck"])
         }
         return item
     except:
