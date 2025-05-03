@@ -1,26 +1,36 @@
 import requests
 from pyedhrec import EDHRec
 import ai
+from pymongo import MongoClient
+import os
 
+mongo = MongoClient(os.getenv("MONGO_CONNECTION_STRING"))
+db = mongo["mtgdb"]
+edh_collection = db["edhdecks"]
 edhrec = EDHRec()
 
 def main():
+    print("Fetching all legal commanders...")
     commanders = fetch_legal_commanders()
     for i in range(len(commanders)):
          commanders[i] = commanders[i]["name"]
+         print("Generating description for "+str(commanders[i]))
+         item = create_commander_dictionary(commanders[i])
+         print("Logging "+str(commanders[i])+" info to db...")
+         log_item_to_db(item)
 
-    item = createCommanderDictionary(commanders[0])
 
-    print(item)
+def log_item_to_db(item):
+    if item != None:
+        edh_collection.insert_one(item)
 
-
-def createCommanderDictionary(commander):
+def create_commander_dictionary(commander):
     try:
         decks = edhrec.get_commander_decks(commander)
         item = {
             "commander": str(commander),
             "decklist": decks["deck"],
-            "description": ai.getDescription(decks["deck"])
+            "description": ai.get_description("Commander"+str(commander)+str(decks["deck"]))
         }
         return item
     except:
