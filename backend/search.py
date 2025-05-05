@@ -5,7 +5,6 @@ from sentence_transformers import SentenceTransformer
 mongo = MongoClient(os.getenv("MONGO_CONNECTION_STRING"))
 collection = mongo["mtgdb"]["edhdecks"]
 model = SentenceTransformer("all-MiniLM-L6-v2")
-embedding = model.encode("sacrifice golgari graveyard recursion").tolist()
 
 def get_deck_from_description(description):
     embedding = model.encode(description).tolist()
@@ -24,6 +23,7 @@ def get_deck_from_description(description):
         {
             "$project": {
                 "commander": 1,
+                "decklist": 1,
                 "description": 1,
                 "score": { "$meta": "vectorSearchScore" }
             }
@@ -35,6 +35,7 @@ def get_deck_from_description(description):
     for doc in results:
         print(f"{doc['commander']} (score: {doc['score']:.4f})")
         print(doc['description'])
+        print(doc['decklist'])
         print("-" * 60)
 
     return results
