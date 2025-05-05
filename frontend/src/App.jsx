@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import Form from './components/Form.jsx'
 import CommanderDeck from './components/CommanderDeck.jsx'
+import Header from './components/Header.jsx'
 
 function App() {
   const [generatedResponse, setGeneratedResponse] = useState(undefined)
@@ -37,8 +38,11 @@ function App() {
 
   return (
     <>
+      <Header />
       <Form handleSubmit={handleSubmit} />
-      {generatedResponse}
+      <div>
+        {generatedResponse}
+      </div>
     </>
   )
 }
