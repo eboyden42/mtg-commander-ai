@@ -2,8 +2,8 @@ export default function Form({ handleSubmit }) {
 
   return (
     <>
+    <h1>What deck should I create?</h1>
     <div className="form-container">
-      <h3>Input a description below to generate a decklist</h3>
       <form onSubmit={handleSubmit}>
         <input type="text" name="description"/>
         <button>Create decklist</button>

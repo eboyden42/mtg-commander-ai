@@ -4,7 +4,7 @@ import CommanderDeck from './components/CommanderDeck.jsx'
 import Header from './components/Header.jsx'
 
 function App() {
-  const [generatedResponse, setGeneratedResponse] = useState(undefined)
+  const [generatedResponse, setGeneratedResponse] = useState(null)
 
 
   function handleSubmit(event) {
@@ -38,7 +38,7 @@ function App() {
 
   return (
     <>
-      <Header />
+      {/* <Header /> */}
       <Form handleSubmit={handleSubmit} />
       <div>
         {generatedResponse}

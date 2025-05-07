@@ -1,40 +1,53 @@
 body {
-  margin: 0;
+  margin: 20px;
   padding: 20px;
   display: block;
+  background-color: rgb(59, 59, 59);
+  text-align: center;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+h1 {
+  font-weight: lighter;
+  color: whitesmoke;
+  text-shadow: 2px 2px 5px rgb(96, 96, 96);
 }
 
 .form-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin: auto;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  padding: 40px;
+  margin: auto;
+  max-width: 60%;
+  padding: 3px 12px;
   border-radius: 10px;
+  border: 1px solid whitesmoke;
 }
 
 input {
-  padding: 8px 15px;
+  padding: 20px 15px;
   min-width: 700px;
   max-width: 800px;
   box-sizing: border-box;
   border-radius: 20px;
+  border: none;
   margin-right: 10px;
+  background-color: rgb(59, 59, 59);
+  outline: none;
+  color: whitesmoke;
+  font-size: large;
 }
 
 button {
   padding: 10px 15px;
   border-radius: 20px;
-  background-color: black;
+  background-color: rgb(49, 48, 48);
   color: azure;
   font-weight: bold;
-  border: 1px solid black;
+  border: 1px solid white;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-  border: 1px solid white;
+  box-shadow: 0 6px 8px rgba(0, 0, 0, 0.2);
 }
 
 h3 {
@@ -42,17 +55,44 @@ h3 {
 }
 
 .commander-container {
-  background-color: aliceblue;
+  background-color: rgb(59, 59, 59);
   width: 700px;
+  margin: 20px auto; 
+  color: rgb(180, 180, 180);
+  padding: 10px;
+}
+
+.commander-container > h1 {
+  color: rgb(180, 180, 180);
+  text-shadow: none;
 }
 
 .header {
   display: flex;
   flex-direction: row;
   align-items: center;
+
   gap: 12px;
 }
 
 .logo {
   width: 60px
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(-10px);
+  animation: fadeIn 0.5s ease-in-out forwards;
+}
+
+@keyframes fadeIn {
+  0% {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
