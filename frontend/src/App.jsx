@@ -20,7 +20,7 @@ function App() {
     })
       .then((res) => res.json())
       .then((data) => {
-        console.log("Data:")
+        // console.log("Data:")
         console.log(data)
         setGeneratedResponse(data.message ? createDecks(data.message) : "Request failed...");
       })

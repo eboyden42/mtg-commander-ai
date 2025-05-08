@@ -1,14 +1,11 @@
+import DeckList from "./DeckList"
+
 export default function CommanderDeck({ commander, decklist, description }) {
-
-    // const deckArr = decklist.map((item => <li>{item}</li>))
-
     return (
         <>
         <div className="commander-container fade-in" >
             <h1>Commander: {commander}</h1>
-            <ul>
-                {decklist}
-            </ul>
+            <DeckList decklist={decklist} />
             <p>{description}</p>
         </div>
         </>

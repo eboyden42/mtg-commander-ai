@@ -19,7 +19,7 @@ def run_search():
         parsedDeck = {
             "id": str(deck["_id"]),
             "commander": str(deck["commander"]),
-            "decklist": str(deck["decklist"]),
+            "decklist": deck["decklist"],
             "description": str(deck["description"])
         }
         parsedDecks.append(parsedDeck)
