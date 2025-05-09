@@ -5,7 +5,7 @@ import Header from './components/Header.jsx'
 
 function App() {
   const [generatedResponse, setGeneratedResponse] = useState(null)
-  const api_url = process.env.APP_API_DIST_URL
+  const api_url = import.meta.env.VITE_APP_API_DIST_URL
 
   function handleSubmit(event) {
     event.preventDefault()

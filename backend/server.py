@@ -4,7 +4,7 @@ from flask_cors import CORS
 import search
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, origins=["https://commander-ai-frontend.onrender.com/"])
 
 @app.route("/search", methods=["POST"])
 def run_search():
