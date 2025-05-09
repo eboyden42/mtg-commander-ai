@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+import os
 from flask_cors import CORS
 import search
 
@@ -27,4 +28,4 @@ def run_search():
     return jsonify({"message": parsedDecks})
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host="0.0.0.0", port=os.getenv("PORT"), debug=True)
