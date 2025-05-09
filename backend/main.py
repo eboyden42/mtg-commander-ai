@@ -1,4 +1,4 @@
-import backend.search as search
+import search
 
 description = input("Enter your search here: ")
 

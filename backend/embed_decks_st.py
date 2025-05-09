@@ -9,7 +9,6 @@ db = mongo["mtgdb"]
 collection = db["edhdecks"]
 
 def add_embeddings_to_db():
-    count = 1
     for doc in collection.find():
         print("Embedding description "+str(count)+" of 2111... "+str(2111-count)+" remaining")
         description = doc["description"]

@@ -1,18 +1,22 @@
 from pymongo import MongoClient
 import os
-from sentence_transformers import SentenceTransformer
+import openai
+# from sentence_transformers import SentenceTransformer
 
 mongo = MongoClient(os.getenv("MONGO_CONNECTION_STRING"))
 collection = mongo["mtgdb"]["edhdecks"]
-model = SentenceTransformer("all-MiniLM-L6-v2")
+
+openai.api_key = os.getenv("OPENAI_API_KEY")
+# model = SentenceTransformer("all-MiniLM-L6-v2")
 
 def get_deck_from_description(description):
-    embedding = model.encode(description).tolist()
+    # embedding = model.encode(description).tolist()
+    embedding = get_openai_embedding(description)
 
     pipeline = [
         {
             "$vectorSearch": {
-                "index": "description",
+                "index": "openai_description",
                 "path": "embedding",
                 "queryVector": embedding,
                 "numCandidates": 100,
@@ -39,3 +43,10 @@ def get_deck_from_description(description):
         print("-" * 60)
 
     return results
+
+def get_openai_embedding(text):
+    response = openai.embeddings.create(
+        input=text,
+        model="text-embedding-3-small"
+    )
+    return response.data[0].embedding
