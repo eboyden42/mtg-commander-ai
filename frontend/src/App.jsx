@@ -5,6 +5,7 @@ import Header from './components/Header.jsx'
 
 function App() {
   const [generatedResponse, setGeneratedResponse] = useState(null)
+  const [isGettingResponse, setIsGettingResponse] = useState(false)
   const api_url = import.meta.env.VITE_APP_API_DIST_URL
 
   function handleSubmit(event) {
@@ -12,6 +13,7 @@ function App() {
     const formData = new FormData(event.currentTarget)
     const description = formData.get("description")
     event.currentTarget.reset()
+    setIsGettingResponse(true)
 
     fetch(api_url, { 
       method: 'POST',
@@ -22,6 +24,7 @@ function App() {
       .then((data) => {
         // console.log("Data:")
         console.log(data)
+        setIsGettingResponse(false)
         setGeneratedResponse(data.message ? createDecks(data.message) : "Request failed...");
       })
       .catch((err) => console.error('Error:', err));
@@ -40,9 +43,10 @@ function App() {
     <>
       {/* <Header /> */}
       <Form handleSubmit={handleSubmit} />
+      {isGettingResponse ? <h3>Creating decks...</h3> :
       <div>
         {generatedResponse}
-      </div>
+      </div> }
     </>
   )
 }
