@@ -5,7 +5,7 @@ import Header from './components/Header.jsx'
 
 function App() {
   const [generatedResponse, setGeneratedResponse] = useState(null)
-
+  const api_url = process.env.APP_API_DIST_URL
 
   function handleSubmit(event) {
     event.preventDefault()
@@ -13,7 +13,7 @@ function App() {
     const description = formData.get("description")
     event.currentTarget.reset()
 
-    fetch('http://127.0.0.1:5000/search', {
+    fetch(api_url, { 
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({ description }),
