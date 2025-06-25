@@ -33,7 +33,7 @@ Both frontend and backend are deployed on [Render](https://render.com), making t
 ## Live Demo
 
 You can try out the app here:  
-[**Live Demo on Render**](https://mtg-commander-ai.onrender.com)  
+[**Live Demo on Render**](https://commander-ai-frontend.onrender.com/)  
 (*Please allow some time for the server to spin up on the first request.*)
 
 ## Project Status
