@@ -28,7 +28,7 @@ When a user enters a description, the backend searches for the top vector matche
 
 The frontend is built with React and provides a simple interface for users to input natural language queries. It communicates with a Python server to retrieve matching decks based on vector similarity.
 
-Both frontend and backend are deployed on [Render](https://render.com), making the application accessible online. Note that the first request may take a few moments to respond due to cold start latency.
+Both frontend and backend are deployed on [Render](https://render.com), making the application accessible online. Note that the first request may take a few moments to respond due to cold start latency (this will be fixed later in development).
 
 ## Live Demo
 
